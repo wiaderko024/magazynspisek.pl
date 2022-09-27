@@ -1,5 +1,7 @@
 from django.db import models
 
+from authors.models import Author
+
 
 class Article(models.Model):
     title = models.CharField(max_length=300, blank=False, null=False)
@@ -14,6 +16,7 @@ class Article(models.Model):
         ('Inne', 'Inne')
     ]
     act = models.CharField(max_length=10, choices=ARTICLE_TYPES, blank=False, null=False)
+    author = models.ForeignKey(Author, on_delete=models.DO_NOTHING, blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False, null=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False, null=True)
 

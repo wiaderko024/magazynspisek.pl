@@ -10,21 +10,19 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('authors', '0001_initial'),
+        ('articles', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Article',
+            name='Photo',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=300)),
-                ('description', models.TextField()),
-                ('cover', models.ImageField(upload_to='articles_covers')),
-                ('date', models.DateField(blank=True, null=True)),
-                ('article', models.TextField()),
-                ('act', models.CharField(choices=[('Akt I', 'Akt I'), ('Akt II', 'Akt II'), ('Akt III', 'Akt III'), ('Inne', 'Inne')], max_length=10)),
+                ('photo', models.ImageField(upload_to='photos')),
+                ('description', models.TextField(blank=True, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True, null=True)),
+                ('article', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='articles.article')),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='authors.author')),
             ],
         ),
